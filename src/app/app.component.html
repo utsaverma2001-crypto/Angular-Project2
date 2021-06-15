@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-4">
+      <h1 class="text-center">User List</h1>
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Pincode</th>
+            <th class="text-center">Delivery Status</th>
+            <th class="text-center">District</th>
+            <th class="text-center">State</th>
+            <th class="text-center">Delivery Day</th>
+            <th class="text-center">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.pincode }}</td>
+            <td>{{ user.deliveryStatus }}</td>
+            <td>{{ user.district }}</td>
+            <td>{{ user.state }}</td>
+            <td>{{ user.deliveryDay }}</td>
+
+
+            <td>
+              <button type="button" class="btn btn-info btn-sm mr-2" (click)="showEditUserForm(user)">Edit</button>
+
+              <button type="button" class="btn btn-danger btn-sm" (click)="removeUser(user)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-success" (click)="showAddUserForm()">Add New User</button>
+
+      <div class="mt-4">
+        <form *ngIf="userForm">
+          <h2>Add New User</h2>
+          <p>Pincode: <input type="text" name="pincode" [(ngModel)]="newUser.pincode" /></p>
+          <p>Delivery Status: <input type="text" name="deliveryStatus" [(ngModel)]="newUser.deliveryStatus" /></p>
+          <p>District: <input type="text" name="district" [(ngModel)]="newUser.district" /></p>
+          <p>State: <input type="text" name="state" [(ngModel)]="newUser.state" /></p>
+          <p>Delivery day: <input type="text" name="deliveryDay" [(ngModel)]="newUser.deliveryDay" /></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="saveUser(newUser)">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelNewUser()">Cancel</button>
+          </p>
+        </form>
+
+        <form *ngIf="editUserForm">
+          <h2>Edit User Details</h2>
+          <p>Pincode: <input type="text" name="pincode" [(ngModel)]="editedUser.pincode" /></p>
+          <p>Delivery Status: <input type="text" name="deliveryStatus" [(ngModel)]="editedUser.deliveryStatus" /></p>
+          <p>District: <input type="text" name="district" [(ngModel)]="editedUser.district" /></p>
+          <p>State: <input type="text" name="state" [(ngModel)]="editedUser.state" /></p>
+          <p>Delivery day: <input type="text" name="deliveryDay" [(ngModel)]="editedUser.deliveryDay" /></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="updateUser()">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelEdits()">Cancel</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
